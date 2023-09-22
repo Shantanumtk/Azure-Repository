@@ -1,0 +1,121 @@
+ubuntu@ubuntu:~/Azure$ sh VNET_VM_Creation.sh
+=======================================
+Current Resource Group : ODL-azure-1088766
+=======================================
+=======================================
+VNET Creation With Below Variables
+VNET LOCATION : westus
+SUBNET 1 NAME : Frontend_Subnet
+SUBNET 2 NAME : Backend_Subnet
+=======================================
+{
+  "newVNet": {
+    "addressSpace": {
+      "addressPrefixes": [
+        "10.0.0.0/16"
+      ]
+    },
+    "enableDdosProtection": false,
+    "etag": "W/\"036202c9-f3a8-4e65-880b-b03eb867c437\"",
+    "id": "/subscriptions/b2aec48f-6dad-4d57-ad25-dad521fe74a4/resourceGroups/ODL-azure-1088766/providers/Microsoft.Network/virtualNetworks/Project_VNet",
+    "location": "westus",
+    "name": "Project_VNet",
+    "provisioningState": "Succeeded",
+    "resourceGroup": "ODL-azure-1088766",
+    "resourceGuid": "b398f7e7-3838-4c0a-9e53-cc7c041ce100",
+    "subnets": [],
+    "tags": {
+      "DeploymentId": "1088766",
+      "LaunchId": "21565",
+      "LaunchType": "ON_DEMAND_LAB",
+      "TemplateId": "4283",
+      "TenantId": "363"
+    },
+    "type": "Microsoft.Network/virtualNetworks",
+    "virtualNetworkPeerings": []
+  }
+}
+======================================
+Subnet Creation
+{
+  "addressPrefix": "10.0.1.0/24",
+  "delegations": [],
+  "etag": "W/\"0f023a54-854e-48cf-8776-ced07efca890\"",
+  "id": "/subscriptions/b2aec48f-6dad-4d57-ad25-dad521fe74a4/resourceGroups/ODL-azure-1088766/providers/Microsoft.Network/virtualNetworks/Project_VNet/subnets/Frontend_Subnet",
+  "name": "Frontend_Subnet",
+  "privateEndpointNetworkPolicies": "Disabled",
+  "privateLinkServiceNetworkPolicies": "Enabled",
+  "provisioningState": "Succeeded",
+  "resourceGroup": "ODL-azure-1088766",
+  "type": "Microsoft.Network/virtualNetworks/subnets"
+}
+{
+  "addressPrefix": "10.0.2.0/24",
+  "delegations": [],
+  "etag": "W/\"ee03d07c-7089-48a7-a854-e1853b401655\"",
+  "id": "/subscriptions/b2aec48f-6dad-4d57-ad25-dad521fe74a4/resourceGroups/ODL-azure-1088766/providers/Microsoft.Network/virtualNetworks/Project_VNet/subnets/Backend_Subnet",
+  "name": "Backend_Subnet",
+  "privateEndpointNetworkPolicies": "Disabled",
+  "privateLinkServiceNetworkPolicies": "Enabled",
+  "provisioningState": "Succeeded",
+  "resourceGroup": "ODL-azure-1088766",
+  "type": "Microsoft.Network/virtualNetworks/subnets"
+}
+======================================
+<----- VNET Status ----->
+Name          ProvisioningState
+------------  -------------------
+Project_VNet  Succeeded
+Name             ProvisioningState
+---------------  -------------------
+Frontend_Subnet  Succeeded
+Backend_Subnet   Succeeded
+<----- VNET Status ----->
+======================================
+======================================
+VM 1 Creation
+Ignite (November) 2023 onwards "az vm/vmss create" command will deploy Gen2-Trusted Launch VM by default. To know more about the default change and Trusted Launch, please visit https://aka.ms/TLaD
+{
+  "fqdns": "",
+  "id": "/subscriptions/b2aec48f-6dad-4d57-ad25-dad521fe74a4/resourceGroups/ODL-azure-1088766/providers/Microsoft.Compute/virtualMachines/Frontend_VM",
+  "location": "westus",
+  "macAddress": "00-0D-3A-35-D5-B5",
+  "powerState": "VM running",
+  "privateIpAddress": "10.0.1.4",
+  "publicIpAddress": "104.42.146.174",
+  "resourceGroup": "ODL-azure-1088766",
+  "zones": ""
+}
+Command ran in 91.226 seconds (init: 0.312, invoke: 90.913)
+======================================
+VM 2 Creation
+Ignite (November) 2023 onwards "az vm/vmss create" command will deploy Gen2-Trusted Launch VM by default. To know more about the default change and Trusted Launch, please visit https://aka.ms/TLaD
+{
+  "fqdns": "",
+  "id": "/subscriptions/b2aec48f-6dad-4d57-ad25-dad521fe74a4/resourceGroups/ODL-azure-1088766/providers/Microsoft.Compute/virtualMachines/Backend_VM",
+  "location": "westus",
+  "macAddress": "60-45-BD-04-53-09",
+  "powerState": "VM running",
+  "privateIpAddress": "10.0.2.4",
+  "publicIpAddress": "40.83.196.88",
+  "resourceGroup": "ODL-azure-1088766",
+  "zones": ""
+}
+Command ran in 128.982 seconds (init: 1.624, invoke: 127.358)
+======================================
+<----- VM Status ----->
+VM 1 Provisioning State : Succeeded
+VM Status : VM running
+VM 2 Provisioning State : Succeeded
+VM Status : VM running
+======================================
+=======================================
+Public IP of Frontend_VM 104.42.146.174
+ssh frontend_user@104.42.146.174
+=======================================
+=======================================
+Public IP of Backend_VM 40.83.196.88
+ssh backend_user@40.83.196.88
+=======================================
+Script executed in 346 seconds
+ubuntu@ubuntu:~/Azure$
